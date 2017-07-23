@@ -100,6 +100,16 @@ Section Hash.
 Inductive hashT : Type :=
 | hash : string -> hashT.
 
+(* Note that we assume collision freeness. At the moment
+   this follows from the data type definition. *)
+Lemma hash_collision_free:
+  forall x y, x <> y -> hash x <> hash y.
+Proof.
+  intros x y H.
+  unfold not.
+  intros H1. injection H1; auto.
+Qed.
+
 End Hash.
 
 
